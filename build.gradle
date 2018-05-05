@@ -1,15 +1,7 @@
-plugins {
-    id 'java'
+task distributionAll(type: Zip){
+
+    from 'README.txt'
+    destinationDir rootProject.buildDir
+    baseName "microservice_template_distribution"
+    version rootProject.version
 }
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-jar.baseName="microservice_template_test"
