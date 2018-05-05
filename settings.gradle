@@ -1,2 +1,3 @@
-rootProject.name = 'microservice'
+rootProject.name = 'microservice_template'
 
+include 'service-spring-rest'
