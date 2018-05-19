@@ -6,7 +6,7 @@ rootProject.ext {
 //ext.spring-rest-version = spring-rest-version
 task distributionAll(type: Zip){
 
-    from 'README.txt'
+    from 'README.md'
     destinationDir rootProject.buildDir
     baseName "microservice_template_distribution"
     version rootProject.version

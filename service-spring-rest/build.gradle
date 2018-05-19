@@ -43,7 +43,7 @@ task parseDockerfile {
 task distribution(type: Zip){
     dependsOn build
     destinationDir file(rootProject.spring_rest_distrib_dir)
-    from 'README.txt',bootJar.archivePath
+    from 'README.md',bootJar.archivePath
     baseName "dockerize_spring_rest"
     version rootProject.spring_rest_version
     doLast {
