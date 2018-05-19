@@ -12,10 +12,11 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'war'
 
 bootJar {
     baseName = 'gs-rest-service'
-    version =  '0.1.0'
+    version =  rootProject.spring_rest_version
 }
 
 repositories {
@@ -28,4 +29,31 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile('org.springframework.boot:spring-boot-starter-test')
+// for war   providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
+def dockerFilePath = "${rootProject.spring_rest_distrib_dir}/Dockerfile"
+task parseDockerfile {
+    doLast {
+        String contents = new File( 'Dockerfile' ).getText( 'UTF-8' )
+        contents = contents.replaceAll( 'JAR_NAME_PLACEHOLDER', bootJar.archiveName )
+        new File( "${dockerFilePath}" ).write( contents, 'UTF-8' )
+    }
+}
+
+task distribution(type: Zip){
+    dependsOn build
+    destinationDir file(rootProject.spring_rest_distrib_dir)
+    from 'README.txt',bootJar.archivePath
+    baseName "dockerize_spring_rest"
+    version rootProject.spring_rest_version
+    doLast {
+        String contents = new File( 'Dockerfile' ).getText( 'UTF-8' )
+        contents = contents.replaceAll( 'JAR_NAME_PLACEHOLDER', bootJar.archiveName )
+        contents = contents.replaceAll( 'ARCHIVE_NAME_PLACEHOLDER', distribution.archiveName )
+        new File( "${dockerFilePath}" ).write( contents, 'UTF-8' )
+    }
+}
+
+
+
+

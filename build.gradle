@@ -1,3 +1,9 @@
+rootProject.ext {
+    spring_rest_version = spring_rest_version
+    spring_rest_distrib_dir = "${rootProject.buildDir}/spring_rest/"
+}
+
+//ext.spring-rest-version = spring-rest-version
 task distributionAll(type: Zip){
 
     from 'README.txt'
