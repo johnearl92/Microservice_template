@@ -4,8 +4,14 @@ rootProject.ext {
 }
 
 //ext.spring-rest-version = spring-rest-version
-task distributionAll(type: Zip){
 
+task copyDockerCompose(type:Copy){
+    from 'docker-compose.yml'
+    into rootProject.buildDir
+}
+
+task distributionAll(type: Zip){
+    dependsOn copyDockerCompose, ":service-spring-rest:distribution"
     from 'README.md'
     destinationDir rootProject.buildDir
     baseName "microservice_template_distribution"
