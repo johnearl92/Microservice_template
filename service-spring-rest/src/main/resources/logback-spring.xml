@@ -12,7 +12,7 @@
             </encoder>
             <file>${LOG_FILE}</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>/tmp/${LOG_FILE}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+                <fileNamePattern>${LOG_FILE}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy
                         class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <maxFileSize>2KB</maxFileSize>

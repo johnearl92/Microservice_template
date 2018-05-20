@@ -8,4 +8,4 @@ logging:
     org.springframework: INFO
     org.springframework.data: INFO
     com.hello: WARN
-  file: ${SPRING_APP_HOME:LOGS}/logs/application
+  file: ${SPRING_APP_HOME:"/tmp/logs"}/logs/application
