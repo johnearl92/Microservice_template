@@ -32,13 +32,6 @@ dependencies {
 // for war   providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 def dockerFilePath = "${rootProject.spring_rest_distrib_dir}/Dockerfile"
-task parseDockerfile {
-    doLast {
-        String contents = new File( 'Dockerfile' ).getText( 'UTF-8' )
-        contents = contents.replaceAll( 'JAR_NAME_PLACEHOLDER', bootJar.archiveName )
-        new File( "${dockerFilePath}" ).write( contents, 'UTF-8' )
-    }
-}
 
 task distribution(type: Zip){
     dependsOn build

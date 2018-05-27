@@ -4,4 +4,4 @@ services:
     build: ./spring_rest
     image: earloo/microservice_template:spring_reset
     ports:
-     - "8080:8080 "
+     - "8080:8080"
