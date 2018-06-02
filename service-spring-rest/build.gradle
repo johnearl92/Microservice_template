@@ -40,7 +40,7 @@ task distribution(type: Zip){
     baseName "dockerize_spring_rest"
     version rootProject.spring_rest_version
     doLast {
-        String contents = new File( 'Dockerfile' ).getText( 'UTF-8' )
+        String contents = new File( "${project.projectDir}/Dockerfile" ).getText( 'UTF-8' )
         contents = contents.replaceAll( 'JAR_NAME_PLACEHOLDER', bootJar.archiveName )
         contents = contents.replaceAll( 'ARCHIVE_NAME_PLACEHOLDER', distribution.archiveName )
         new File( "${dockerFilePath}" ).write( contents, 'UTF-8' )
